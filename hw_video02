@@ -1,0 +1,43 @@
+<?php
+// http://localhost/project/darunIt_php/firstclass.php
+// take 3 values from user as input and return the largest number
+function findLargest($num1, $num2, $num3) {
+    $largest = $num1;
+
+    if ($num2 > $largest) {
+        $largest = $num2;
+    }
+
+    if ($num3 > $largest) {
+        $largest = $num3;
+    }
+
+    return $largest;
+}
+
+// Check if form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve input from the user
+    $input1 = (int) $_POST["num1"];
+    $input2 = (int) $_POST["num2"];
+    $input3 = (int) $_POST["num3"];
+
+    // Call the function and display the result
+    $result = findLargest($input1, $input2, $input3);
+    echo "The largest number is: " . $result;
+}
+?>
+
+<!-- HTML form -->
+<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <label for="num1">Enter the first number:</label>
+    <input type="number" name="num1" id="num1" required><br>
+
+    <label for="num2">Enter the second number:</label>
+    <input type="number" name="num2" id="num2" required><br>
+
+    <label for="num3">Enter the third number:</label>
+    <input type="number" name="num3" id="num3" required><br>
+
+    <input type="submit" value="Find Largest">
+</form>
